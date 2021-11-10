@@ -20,7 +20,19 @@ namespace SalarySystem
         }
         void CreateUser()
         {
+            Console.Write("Username: ");
+            var username = Console.ReadLine();
+            Console.Write("Password: ");
+            var password = Console.ReadLine();
+            Console.Write("Username: ");
+            var profession = Console.ReadLine();
+            Console.Write("Password: ");
+            var salary = Console.ReadLine();
 
+            User user = new User()
+            {
+                username=
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ namespace SalarySystem
 {
     class Account
     {
-        static List<Account> users = new List<Account>();
+        public static List<Account> users = new List<Account>();
 
         public string username { get; set; }
         public string password { get; set; }
@@ -19,6 +19,14 @@ namespace SalarySystem
         {
             this.username = username;
             this.password = password;
+        }
+
+        public Account(string username, string password, string profession, int salary)
+        {
+            this.username = username;
+            this.password = password;
+            this.profession = profession;
+            this.salary = salary;
         }
     }
 }
