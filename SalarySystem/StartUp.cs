@@ -8,29 +8,50 @@ namespace SalarySystem
 {
     class StartUp
     {
-        public static void StartMenu()
+        void StartMenu()
         {
             Console.WriteLine("Enter username and password.");
             Console.Write("Username: ");
             var username = Console.ReadLine();
             Console.Write("Password: ");
             var password = Console.ReadLine();
+            LogIn(username, password);
         }
         
-        public static void UserMenu()
+        void UserMenu()
         {
             Console.WriteLine("1. See salary");
             Console.WriteLine("2. Se profession");
             Console.WriteLine("3. Delete yourself");
         }
 
-        public static void AdminMenu()
+        void AdminMenu()
         {
             Console.WriteLine("1. See salary");
             Console.WriteLine("2. Se profession");
             Console.WriteLine("3. List users");
             Console.WriteLine("4. Add user");
             Console.WriteLine("5. Delete user");
+        }
+        void LogIn(string username, string password)
+        {
+            if (username == "admin1" && password == "admin1234")
+            {
+                AdminMenu();
+            }
+            else //Vad händer vid default???
+            {
+                var isUser = Account.users.Where(x => x.username==username).FirstOrDefault();
+                if (isUser.password == password)
+                {
+                    UserMenu();
+                }
+                else
+                {
+                    Console.WriteLine("Login failed");
+                    StartMenu();
+                }
+            }
         }
     }
 }
