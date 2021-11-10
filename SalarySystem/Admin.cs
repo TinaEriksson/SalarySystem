@@ -6,8 +6,21 @@ using System.Threading.Tasks;
 
 namespace SalarySystem
 {
-    class Admin : Account
+    internal class Admin : Account
     {
+        public Admin(string username, string password) : base(username, password)
+        {
+            username = "admin1";
+            password = "admin1234";
+        }
 
+        void ListUsers()
+        {
+
+        }
+        void CreateUser()
+        {
+
+        }
     }
 }
