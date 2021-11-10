@@ -8,9 +8,9 @@ namespace SalarySystem
 {
     class Account
     {
-        public string username;
-        public string password;
-        public string profession;
-        public int salary;
+        public string username { get; set; }
+        public string password { get; set; }
+        public string profession { get; set; }
+        public int salary { get; set; }
     }
 }
