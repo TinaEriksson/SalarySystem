@@ -8,7 +8,7 @@ namespace SalarySystem
 {
     public class StartUp
     {
-        void StartMenu()
+        public void StartMenu()
         {
             Console.WriteLine("Enter username and password.");
             Console.Write("Username: ");
