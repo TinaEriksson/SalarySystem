@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SalarySystem
 {
-    class StartUp
+    public class StartUp
     {
         void StartMenu()
         {
@@ -33,7 +33,7 @@ namespace SalarySystem
             Console.WriteLine("4. Add user");
             Console.WriteLine("5. Delete user");
         }
-        void LogIn(string username, string password)
+        public void LogIn(string username, string password)
         {
             if (username == "admin1" && password == "admin1234")
             {
@@ -41,7 +41,7 @@ namespace SalarySystem
             }
             else //Vad händer vid default???
             {
-                var isUser = Account.users.Where(x => x.username==username).FirstOrDefault();
+                var isUser = FindUser(username);
                 if (isUser.password == password)
                 {
                     UserMenu();
@@ -52,6 +52,11 @@ namespace SalarySystem
                     StartMenu();
                 }
             }
+        }
+
+        public Account FindUser(string username)
+        {
+            return Account.users.Where(x => x.username == username).FirstOrDefault();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SalarySystem
 {
-    class User:Account
+    public class User:Account
     {
         
 

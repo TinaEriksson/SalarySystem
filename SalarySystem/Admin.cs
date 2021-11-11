@@ -29,10 +29,7 @@ namespace SalarySystem
             Console.Write("Password: ");
             var salary = Console.ReadLine();
 
-            User user = new User()
-            {
-                username=
-            }
+
         }
     }
 }
