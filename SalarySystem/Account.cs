@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SalarySystem
 {
-    class Account
+    public class Account
     {
         public static List<Account> users = new List<Account>();
 
