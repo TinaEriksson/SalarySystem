@@ -15,6 +15,10 @@ namespace SalarySystem
         public string profession { get; set; }
         public int salary { get; set; }
 
+        public Account()
+        {
+
+        }
         public Account(string username, string password)
         {
             this.username = username;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SalarySystem
 {
-    internal class Admin : Account
+    public class Admin : Account
     {
         public Admin(string username, string password) : base(username, password)
         {
@@ -14,7 +14,7 @@ namespace SalarySystem
             password = "admin1234";
         }
 
-        void ListUsers()
+        public void ListUsers()
         {
 
         }
