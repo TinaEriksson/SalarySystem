@@ -35,7 +35,7 @@ namespace SalarySystem
         }
         public void LogIn(string username, string password)
         {
-            if (username == "admin1" && password == "admin1234")
+            if (Admin.IsAdmin(username, password))
             {
                 AdminMenu();
             }

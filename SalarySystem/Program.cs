@@ -6,8 +6,8 @@ namespace SalarySystem
     {
         static void Main(string[] args)
         {
-            var startUp = new StartUp();
-            startUp.StartMenu();
+            StartUp start = new();
+            start.StartMenu();
         }
     }
 }
