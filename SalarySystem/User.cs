@@ -20,5 +20,14 @@ namespace SalarySystem
         {
             
         }
+         void SeeSalary()
+        {
+
+        }
+         void SeeProfession()
+        {
+
+        }
+
     }
 }

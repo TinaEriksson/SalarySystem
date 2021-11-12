@@ -21,7 +21,7 @@ namespace SalarySystem
         void UserMenu()
         {
             Console.WriteLine("1. See salary");
-            Console.WriteLine("2. Se profession");
+            Console.WriteLine("2. See profession");
             Console.WriteLine("3. Delete yourself");
         }
 
