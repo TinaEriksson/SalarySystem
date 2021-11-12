@@ -8,7 +8,12 @@ namespace SalarySystem
 {
     public class User:Account
     {
+
+
+        public User() 
+        { 
         
+        }
 
         public User(string username, string password) : base(username, password)
         {
@@ -16,13 +21,13 @@ namespace SalarySystem
             this.password = password;
         }
 
-        void DeleteMe()
+        public void DeleteMe()
         {
             
         }
-         void SeeSalary()
+         public int SeeSalary(User user)
         {
-
+            return user.salary;
         }
          void SeeProfession()
         {
