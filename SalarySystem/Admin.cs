@@ -31,5 +31,13 @@ namespace SalarySystem
 
 
         }
+
+        public static bool IsAdmin(string username, string password)
+        {
+            if (username == "admin1" && password == "admin1234")
+                return true;
+            else
+                return false;
+        }
     }
 }
