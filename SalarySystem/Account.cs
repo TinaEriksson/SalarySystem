@@ -8,7 +8,6 @@ namespace SalarySystem
 {
     public class Account
     {
-        public static List<Account> users = new List<Account>();
 
         public string username { get; set; }
         public string password { get; set; }

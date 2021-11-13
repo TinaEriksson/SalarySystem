@@ -54,9 +54,9 @@ namespace SalarySystem
             }
         }
 
-        public Account FindUser(string username)
+        public User FindUser(string username)
         {
-            return Account.users.Where(x => x.username == username).FirstOrDefault();
+            return User.listOfUsers.Where(x => x.username == username).FirstOrDefault();
         }
     }
 }

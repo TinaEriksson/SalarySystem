@@ -8,7 +8,7 @@ namespace SalarySystem
 {
     public class User:Account
     {
-
+        public static List<User> listOfUsers = new List<User>();
 
         public User() 
         { 
@@ -21,9 +21,14 @@ namespace SalarySystem
             this.password = password;
         }
 
-        public void DeleteMe()
+        public bool DeleteMe(User user)
         {
-            
+            if (listOfUsers.Contains(user))
+            {
+                listOfUsers.Remove(user);
+                return true;
+            }
+            return false;
         }
          public int SeeSalary(User user)
         {

@@ -25,5 +25,11 @@ namespace SalarySystem.Tests
             var actual = startUp.FindUser(username);
             Assert.Fail();
         }
+
+        [TestMethod()]
+        public void LogInTest1()
+        {
+            Assert.Fail();
+        }
     }
 }

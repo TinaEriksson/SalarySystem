@@ -8,25 +8,39 @@ namespace SalarySystem
 {
     public class Admin : Account
     {
+        public Admin()
+        {
+
+        }
+
         public Admin(string username, string password) : base(username, password)
         {
             username = "admin1";
             password = "admin1234";
         }
 
-        public void ListUsers()
+        public bool ListUsers()
         {
-
+            if(User.listOfUsers != null)
+            {
+                foreach (var person in User.listOfUsers)
+                {
+                    Console.WriteLine(person.username + " " + person.password);
+                }
+                return true;
+            }
+            return false;
         }
+
         void CreateUser()
         {
             Console.Write("Username: ");
             var username = Console.ReadLine();
             Console.Write("Password: ");
             var password = Console.ReadLine();
-            Console.Write("Username: ");
+            Console.Write("Profession: ");
             var profession = Console.ReadLine();
-            Console.Write("Password: ");
+            Console.Write("Salary: ");
             var salary = Console.ReadLine();
 
 
@@ -34,6 +48,7 @@ namespace SalarySystem
 
         public static bool IsAdmin(string username, string password)
         {
+
             if (username == "admin1" && password == "admin1234")
                 return true;
             else
