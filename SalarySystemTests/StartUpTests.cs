@@ -19,17 +19,32 @@ namespace SalarySystem.Tests
         }
 
         [TestMethod()]
+        [DataRow("Josefine")]
         public void FindUserTest(string username)
         {
             var startUp = new StartUp();
+            User.listOfUsers.Add(new() { username = "Josefine" });
             var actual = startUp.FindUser(username);
-            Assert.Fail();
+            Assert.IsTrue(actual.Count()>0);
         }
 
         [TestMethod()]
-        public void LogInTest1()
+        [DataRow("Lo")]
+        public void FindUserTestZero(string username)
         {
-            Assert.Fail();
+            var startUp = new StartUp();
+            User.listOfUsers.Add(new() { username = "Josefine" });
+            var actual = startUp.FindUser(username);
+            Assert.IsTrue(actual.Count()==0);
+        }
+
+        [TestMethod()]
+        [DataRow("Josefine")]
+        public void FindUserTestNull(string username)
+        {
+            var startUp = new StartUp();
+            var actual = startUp.FindUser(username);
+            Assert.IsTrue(actual.Count() == 0);
         }
     }
 }
