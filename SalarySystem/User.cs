@@ -21,6 +21,11 @@ namespace SalarySystem
             this.password = password;
         }
 
+        /// <summary>
+        /// Tar bort användare
+        /// </summary>
+        /// <param name="user">Användare</param>
+        /// <returns>Om raderandet lyckades</returns>
         public bool DeleteMe(User user)
         {
             if (listOfUsers.Contains(user))

@@ -33,30 +33,33 @@ namespace SalarySystem
             Console.WriteLine("4. Add user");
             Console.WriteLine("5. Delete user");
         }
-        public void LogIn(string username, string password)
+        public bool LogIn(string username, string password)
         {
-            //if (Admin.IsAdmin(username, password))
-            //{
-            //    AdminMenu();
-            //}
-            //else //Vad händer vid default???
-            //{
-            //    var isUser = FindUser(username);
-            //    if (isUser.password == password)
-            //    {
-            //        UserMenu();
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("Login failed");
-            //        StartMenu();
-            //    }
-            //}
+            if (Admin.IsAdmin(username, password))
+            {
+                AdminMenu();
+                return true;
+            }
+            else
+            {
+                var isUser = FindUser(username);
+                if (isUser is not null && isUser.password == password)
+                {
+                    UserMenu();
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Login failed");
+                    StartMenu();
+                    return false;
+                }
+            }
         }
 
-        public IEnumerable<User> FindUser(string username) //Fundera om if-sats ska finnas 
+        public User FindUser(string username) //Fundera om if-sats ska finnas 
         {                                                  //Se över testerna
-            return User.listOfUsers?.Where(x => x.username == username);
+            return User.listOfUsers.Where(x => x.username == username).FirstOrDefault();
         }
     }
 }

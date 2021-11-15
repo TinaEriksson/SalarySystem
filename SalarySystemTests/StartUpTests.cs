@@ -13,19 +13,32 @@ namespace SalarySystem.Tests
     public class StartUpTests
     {
         [TestMethod()]
-        public void LogInTest()
+        [DataRow("admin1", "admin1234")]
+        public void LogInTest(string username, string password)
         {
-            Assert.Fail();
+            var startUp = new StartUp();
+            var actual = startUp.LogIn(username, password);
+            Assert.IsTrue(actual);
         }
 
         [TestMethod()]
-        [DataRow("Josefine")]
+        [DataRow("Greta")]
         public void FindUserTest(string username)
         {
             var startUp = new StartUp();
-            User.listOfUsers.Add(new() { username = "Josefine" });
+            User.listOfUsers.Add(new() { username = "Greta" });
+            var actual = startUp.FindUser(username).username;
+            var expected = "Greta";
+            Assert.AreEqual(actual, expected);
+        }
+
+        [TestMethod()]
+        [DataRow("Ellen")]
+        public void FindUserTestNull(string username)
+        {
+            var startUp = new StartUp();
             var actual = startUp.FindUser(username);
-            Assert.IsTrue(actual.Count()>0);
+            Assert.IsNull(actual);
         }
 
         [TestMethod()]
@@ -33,18 +46,9 @@ namespace SalarySystem.Tests
         public void FindUserTestZero(string username)
         {
             var startUp = new StartUp();
-            User.listOfUsers.Add(new() { username = "Josefine" });
+            User.listOfUsers.Add(new() { username = "Frida" });
             var actual = startUp.FindUser(username);
-            Assert.IsTrue(actual.Count()==0);
-        }
-
-        [TestMethod()]
-        [DataRow("Josefine")]
-        public void FindUserTestNull(string username)
-        {
-            var startUp = new StartUp();
-            var actual = startUp.FindUser(username);
-            Assert.IsTrue(actual.Count() == 0);
+            Assert.IsNull(actual);
         }
     }
 }
