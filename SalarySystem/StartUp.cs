@@ -15,7 +15,17 @@ namespace SalarySystem
             var username = Console.ReadLine();
             Console.Write("Password: ");
             var password = Console.ReadLine();
-            LogIn(username, password);
+            if (LogIn(username, password))
+            {
+                if (Admin.IsAdmin(username, password))
+                {
+                    AdminMenu();
+                }
+                else
+                {
+                    UserMenu();
+                }
+            };
         }
         
         void UserMenu()
@@ -27,17 +37,47 @@ namespace SalarySystem
 
         void AdminMenu()
         {
-            Console.WriteLine("1. See salary");
-            Console.WriteLine("2. Se profession");
-            Console.WriteLine("3. List users");
-            Console.WriteLine("4. Add user");
-            Console.WriteLine("5. Delete user");
+            var admin = new Admin();
+            bool loop = true;
+
+            do
+            {
+                Console.WriteLine("1. See salary");
+                Console.WriteLine("2. Se profession");
+                Console.WriteLine("3. List users");
+                Console.WriteLine("4. Add user");
+                Console.WriteLine("5. Delete user");
+                Console.WriteLine("0. Exit");
+                var checkInput = int.TryParse(Console.ReadLine(), out int choice);
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine(admin.salary);
+                        break;
+                    case 2:
+                        Console.WriteLine(admin.profession); 
+                        break;
+                    case 3:
+                        admin.ListUsers();
+                        break;
+                    case 4:
+                        admin.CreateUser();
+                        break;
+                    case 5:
+                        admin.DeleteUser();
+                        break;
+                    case 0:
+                        Console.WriteLine("Closing program..");
+                        loop = false;
+                        break;
+                }
+            } while (loop);
+            
         }
         public bool LogIn(string username, string password)
         {
             if (Admin.IsAdmin(username, password))
             {
-                AdminMenu();
                 return true;
             }
             else
@@ -45,20 +85,18 @@ namespace SalarySystem
                 var isUser = FindUser(username);
                 if (isUser is not null && isUser.password == password)
                 {
-                    UserMenu();
                     return true;
                 }
                 else
                 {
                     Console.WriteLine("Login failed");
-                    StartMenu();
                     return false;
                 }
             }
         }
 
-        public User FindUser(string username) //Fundera om if-sats ska finnas 
-        {                                                  //Se över testerna
+        public User FindUser(string username)
+        {    
             return User.listOfUsers.Where(x => x.username == username).FirstOrDefault();
         }
     }

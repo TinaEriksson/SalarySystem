@@ -11,15 +11,15 @@ namespace SalarySystem.Tests
     [TestClass()]
     public class AdminTests
     {
-        [TestMethod()]
-        public void ListUsersTest()
-        {
-            Admin admin = new();
-            User.listOfUsers.Add(new User() { username = "Kalle", password = "Kalle1234" });
-            User.listOfUsers.Add(new User() { username = "Olle", password = "Olle1234" });
-            var actual = admin.ListUsers();
-            Assert.IsTrue(actual);
-        }
+        //[TestMethod()]
+        //public void ListUsersTest()
+        //{
+        //    Admin admin = new();
+        //    admin.ListUsers();
+        //    var expected = "Kalle Kalle1234"+
+        //                   "Olle Olle1234";
+        //    Assert.AreEqual(actual, expected);
+        //}
 
         [TestMethod()]
         public void IsAdminTest()

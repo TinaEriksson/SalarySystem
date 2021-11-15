@@ -14,11 +14,22 @@ namespace SalarySystem.Tests
     {
         [TestMethod()]
         [DataRow("admin1", "admin1234")]
+        [DataRow("Greta", "Greta25")]
         public void LogInTest(string username, string password)
         {
             var startUp = new StartUp();
+            User.listOfUsers.Add(new() { username = "Greta", password = "Greta25"});
             var actual = startUp.LogIn(username, password);
             Assert.IsTrue(actual);
+        }
+
+        [TestMethod()]
+        [DataRow("", "")]
+        public void LogInTestNameIsEmpty(string username, string password)
+        {
+            var startUp = new StartUp();
+            var actual = startUp.LogIn(username, password);
+            Assert.IsFalse(actual);
         }
 
         [TestMethod()]
@@ -34,7 +45,7 @@ namespace SalarySystem.Tests
 
         [TestMethod()]
         [DataRow("Ellen")]
-        public void FindUserTestNull(string username)
+        public void FindUserTestListIsNull(string username)
         {
             var startUp = new StartUp();
             var actual = startUp.FindUser(username);
@@ -43,7 +54,7 @@ namespace SalarySystem.Tests
 
         [TestMethod()]
         [DataRow("Lo")]
-        public void FindUserTestZero(string username)
+        public void FindUserTestNameIsNull(string username)
         {
             var startUp = new StartUp();
             User.listOfUsers.Add(new() { username = "Frida" });
