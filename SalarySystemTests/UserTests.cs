@@ -15,7 +15,7 @@ namespace SalarySystem.Tests
         [DataRow(18000)]
         public void SeeSalaryTest(int expected)
         {
-            var user = new User()
+            var user = new Employee()
             {
                 salary = 18000,
             };
@@ -26,8 +26,8 @@ namespace SalarySystem.Tests
         [TestMethod()]
         public void DeleteMeTest()
         {
-            User user = new() { username = "Pelle", password = "pelle123" };
-            User.listOfUsers.Add(user);
+            Employee user = new() { username = "Pelle", password = "pelle123" };
+            Employee.listOfUsers.Add(user);
             var actual = user.DeleteMe(user);
             Assert.IsTrue(actual);
         }

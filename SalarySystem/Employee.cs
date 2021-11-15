@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace SalarySystem
 {
-    public class User:Account
+    public class Employee:Account
     {
-        public static List<User> listOfUsers = new List<User>();
+        public static List<Employee> listOfUsers = new List<Employee>();
+        public int employeeId { get; set; }
 
-        public User() 
+        public Employee() 
         { 
         
         }
 
-        public User(string username, string password) : base(username, password)
+        public Employee(string username, string password) : base(username, password)
         {
             this.username = username;
             this.password = password;
@@ -26,7 +27,7 @@ namespace SalarySystem
         /// </summary>
         /// <param name="user">Användare</param>
         /// <returns>Om raderandet lyckades</returns>
-        public bool DeleteMe(User user)
+        public bool DeleteMe(Employee user)
         {
             if (listOfUsers.Contains(user))
             {
@@ -35,7 +36,7 @@ namespace SalarySystem
             }
             return false;
         }
-         public int SeeSalary(User user)
+         public int SeeSalary(Employee user)
         {
             return user.salary;
         }

@@ -13,7 +13,7 @@ namespace SalarySystem
 
         }
 
-        public Admin(string username, string password) : base(username, password)
+        public Admin(string username, string password, string profession, int salary) : base(username, password, profession, salary)
         {
             username = "admin1";
             password = "admin1234";
@@ -23,11 +23,13 @@ namespace SalarySystem
 
         public void ListUsers()
         {
-            if(User.listOfUsers != null)
+            if(Employee.listOfUsers != null)
             {
-                foreach (var person in User.listOfUsers)
+                int counter = 1;
+                foreach (var person in Employee.listOfUsers)
                 {
-                    Console.WriteLine(person.username + " " + person.password);
+                    Console.WriteLine($"{counter}. {person.username} {person.password}");
+                    counter++;
                 }
             }
         }
@@ -42,8 +44,7 @@ namespace SalarySystem
             var profession = Console.ReadLine();
             Console.Write("Salary: ");
             var checkIfNumber = int.TryParse(Console.ReadLine(), out int salary);
-
-            User.listOfUsers.Add(new()
+            Employee.listOfUsers.Add(new()
             {
                 username = username,
                 password = password,
@@ -62,7 +63,10 @@ namespace SalarySystem
 
         internal void DeleteUser()
         {
-            throw new NotImplementedException();
+            ListUsers();
+            Console.WriteLine("Enter number of user to delete");
+            var checkNumber = int.TryParse(Console.ReadLine(), out int choice);
+
         }
     }
 }

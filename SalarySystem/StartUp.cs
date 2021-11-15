@@ -23,16 +23,43 @@ namespace SalarySystem
                 }
                 else
                 {
-                    UserMenu();
+                    UserMenu(FindUser(username));
                 }
             };
         }
         
-        void UserMenu()
+        void UserMenu(Employee user)
         {
-            Console.WriteLine("1. See salary");
-            Console.WriteLine("2. See profession");
-            Console.WriteLine("3. Delete yourself");
+            bool loop = true;
+            do
+            {
+                Console.WriteLine("1. See salary");
+                Console.WriteLine("2. See profession");
+                Console.WriteLine("3. Delete yourself");
+                Console.WriteLine("0. Exit");
+                var checkInput = int.TryParse(Console.ReadLine(), out int choice);
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine(user.salary);
+                        break;
+                    case 2:
+                        Console.WriteLine(user.profession);
+                        break;
+                    case 3:
+                        var aUser = new Employee();
+                        aUser.DeleteMe(user);
+                        break;
+                    case 0:
+                        Console.WriteLine("Closing program..");
+                        loop = false;
+                        break;
+                    default:
+                        Console.WriteLine("Wrong input");
+                        break;
+                }
+            } while (loop);
+
         }
 
         void AdminMenu()
@@ -70,6 +97,9 @@ namespace SalarySystem
                         Console.WriteLine("Closing program..");
                         loop = false;
                         break;
+                    default:
+                        Console.WriteLine("Wrong input");
+                        break;
                 }
             } while (loop);
             
@@ -82,8 +112,8 @@ namespace SalarySystem
             }
             else
             {
-                var isUser = FindUser(username);
-                if (isUser is not null && isUser.password == password)
+                var theUser = FindUser(username);
+                if (theUser is not null && theUser.password == password)
                 {
                     return true;
                 }
@@ -95,9 +125,9 @@ namespace SalarySystem
             }
         }
 
-        public User FindUser(string username)
+        public Employee FindUser(string username)
         {    
-            return User.listOfUsers.Where(x => x.username == username).FirstOrDefault();
+            return Employee.listOfUsers.Where(x => x.username == username).FirstOrDefault();
         }
     }
 }
