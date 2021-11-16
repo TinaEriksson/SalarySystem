@@ -25,11 +25,11 @@ namespace SalarySystem
         {
             if(Employee.listOfUsers != null)
             {
-                int counter = 1;
                 foreach (var person in Employee.listOfUsers)
                 {
-                    Console.WriteLine($"{counter}. {person.username} {person.password}");
-                    counter++;
+                    Console.WriteLine($"EmployeeId: {person.employeeId}. " +
+                                      $"Username: {person.username} " +
+                                      $"Password: {person.password}");
                 }
             }
         }
@@ -46,11 +46,19 @@ namespace SalarySystem
             var checkIfNumber = int.TryParse(Console.ReadLine(), out int salary);
             Employee.listOfUsers.Add(new()
             {
+                employeeId= FindLastUser()+1,
                 username = username,
                 password = password,
                 profession = profession,
                 salary = salary,
             });
+        }
+
+        private int FindLastUser()
+        {
+            var lastEmployee = Employee.listOfUsers.LastOrDefault();
+            if (lastEmployee is null) return 0;
+            return lastEmployee.employeeId;
         }
 
         public static bool IsAdmin(string username, string password)
@@ -68,5 +76,7 @@ namespace SalarySystem
             var checkNumber = int.TryParse(Console.ReadLine(), out int choice);
 
         }
+
+
     }
 }

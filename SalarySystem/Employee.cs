@@ -20,7 +20,18 @@ namespace SalarySystem
         {
             this.username = username;
             this.password = password;
+
         }
+
+        //public Employee(int employeeId, string username, string password,
+        //    string profession, int salary) : base(username, password,profession,salary)
+        //{
+        //    this.employeeId = employeeId;
+        //    this.username = username;
+        //    this.password = password;
+        //    this.profession = profession;
+        //    this.salary = salary;
+        //}
 
         /// <summary>
         /// Tar bort användare
