@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SalarySystem
@@ -10,97 +11,112 @@ namespace SalarySystem
     {
         public void StartMenu()
         {
-            Console.WriteLine("Enter username and password.");
-            Console.Write("Username: ");
-            var username = Console.ReadLine();
-            Console.Write("Password: ");
-            var password = Console.ReadLine();
-            if (LogIn(username, password))
-            {
-                if (Admin.IsAdmin(username, password))
-                {
-                    AdminMenu();
-                }
-                else
-                {
-                    UserMenu(FindUser(username));
-                }
-            };
-        }
-        
-        void UserMenu(Employee user)
-        {
-            bool loop = true;
+            Helper help = new();
+            help.MockdataEmployees();
+            var keepGoing = true;
             do
             {
+                Console.Clear();
+                Console.WriteLine("Enter username and password.");
+                Console.Write("Username: ");
+                var username = Console.ReadLine();
+                Console.Write("Password: ");
+                var password = Console.ReadLine();
+                if (LogIn(username, password))
+                {
+                    if (Admin.IsAdmin(username, password))
+                    {
+                        AdminMenu();
+                    }
+                    else
+                    {
+                        UserMenu(FindUser(username));
+                    }
+                };
+            } while (keepGoing);
+        }
+        
+        void UserMenu(Employee employee)
+        {
+            bool keepGoing = true;
+            do
+            {
+                Console.Clear();
                 Console.WriteLine("1. See salary");
                 Console.WriteLine("2. See profession");
                 Console.WriteLine("3. Delete yourself");
-                Console.WriteLine("0. Exit");
-                var checkInput = int.TryParse(Console.ReadLine(), out int choice);
+                Console.WriteLine("0. Log out");
+                var choice = Console.ReadLine();
                 switch (choice)
                 {
-                    case 1:
-                        Console.WriteLine(user.salary);
+                    case "1":
+                        Console.WriteLine(employee.salary);
                         break;
-                    case 2:
-                        Console.WriteLine(user.profession);
+                    case "2":
+                        Console.WriteLine(employee.profession);
                         break;
-                    case 3:
-                        var aUser = new Employee();
-                        aUser.DeleteMe(user);
+                    case "3":
+                        var aEmployee = new Employee();
+                        aEmployee.DeleteMe(employee);
                         break;
-                    case 0:
-                        Console.WriteLine("Closing program..");
-                        loop = false;
+                    case "0":
+                        Console.WriteLine("Logging out..");
+                        Thread.Sleep(1000);
+                        keepGoing = false;
                         break;
                     default:
                         Console.WriteLine("Wrong input");
                         break;
                 }
-            } while (loop);
+                Console.WriteLine("Press enter to continue..");
+                Console.ReadKey();
+            } while (keepGoing);
 
         }
 
         void AdminMenu()
         {
-            var admin = new Admin();
+            Admin admin = new();
             bool loop = true;
 
             do
             {
+                Console.Clear();
                 Console.WriteLine("1. See salary");
                 Console.WriteLine("2. Se profession");
-                Console.WriteLine("3. List users");
-                Console.WriteLine("4. Add user");
-                Console.WriteLine("5. Delete user");
-                Console.WriteLine("0. Exit");
-                var checkInput = int.TryParse(Console.ReadLine(), out int choice);
+                Console.WriteLine("3. List employees");
+                Console.WriteLine("4. Add employee");
+                Console.WriteLine("5. Delete employee");
+                Console.WriteLine("0. Log out");
+                var choice = Console.ReadLine();
                 switch (choice)
                 {
-                    case 1:
+                    case "1":
                         Console.WriteLine(admin.salary);
                         break;
-                    case 2:
+                    case "2":
                         Console.WriteLine(admin.profession); 
                         break;
-                    case 3:
-                        admin.ListUsers();
+                    case "3":
+                        admin.PrintListOfEmployees();
                         break;
-                    case 4:
-                        admin.CreateUser();
+                    case "4":
+                        admin.CreateEmployee();
                         break;
-                    case 5:
-                        admin.DeleteUser();
+                    case "5":
+                        admin.DeleteEmployee();
                         break;
-                    case 0:
-                        Console.WriteLine("Closing program..");
+                    case "0":
+                        Console.WriteLine("Logging out..");
+                        Thread.Sleep(1000);
                         loop = false;
                         break;
                     default:
                         Console.WriteLine("Wrong input");
                         break;
                 }
+                Console.WriteLine("Press enter to continue..");
+                Console.ReadKey();
             } while (loop);
             
         }
@@ -127,7 +143,7 @@ namespace SalarySystem
 
         public Employee FindUser(string username)
         {    
-            return Employee.listOfUsers.Where(x => x.username == username).FirstOrDefault();
+            return Employee.listOfEmployees.Where(x => x.username == username).FirstOrDefault();
         }
     }
 }

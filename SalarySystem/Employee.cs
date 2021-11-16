@@ -8,7 +8,7 @@ namespace SalarySystem
 {
     public class Employee:Account
     {
-        public static List<Employee> listOfUsers = new List<Employee>();
+        public static List<Employee> listOfEmployees = new List<Employee>();
         public int employeeId { get; set; }
 
         public Employee() 
@@ -40,9 +40,9 @@ namespace SalarySystem
         /// <returns>Om raderandet lyckades</returns>
         public bool DeleteMe(Employee user)
         {
-            if (listOfUsers.Contains(user))
+            if (listOfEmployees.Contains(user))
             {
-                listOfUsers.Remove(user);
+                listOfEmployees.Remove(user);
                 return true;
             }
             return false;

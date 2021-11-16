@@ -15,7 +15,7 @@ namespace SalarySystem.Tests
         //public void ListUsersTest()
         //{
         //    Admin admin = new();
-        //    admin.ListUsers();
+        //    admin.PrintListOfEmployees();
         //    var expected = "Kalle Kalle1234"+
         //                   "Olle Olle1234";
         //    Assert.AreEqual(actual, expected);
