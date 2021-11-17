@@ -139,8 +139,8 @@ namespace SalarySystem
                 }
                 else
                 {
-                    Console.WriteLine("Login failed, press enter and try again!");
-                    Console.ReadKey();
+                    Console.WriteLine("Login failed, try again..");
+                    Thread.Sleep(1500);
                     return false;
                 }
             }
