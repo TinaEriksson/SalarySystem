@@ -9,20 +9,8 @@ using System.Threading.Tasks;
 namespace SalarySystem.Tests
 {
     [TestClass()]
-    public class UserTests
+    public class EmployeeTests
     {
-        [TestMethod()]
-        [DataRow(18000)]
-        public void SeeSalaryTest(int expected)
-        {
-            var user = new Employee()
-            {
-                salary = 18000,
-            };
-            var actual = user.SeeSalary(user);
-            Assert.AreEqual(actual, expected);
-        }
-
         [TestMethod()]
         public void DeleteMeTest()
         {

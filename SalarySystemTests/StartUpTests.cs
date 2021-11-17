@@ -13,21 +13,21 @@ namespace SalarySystem.Tests
     public class StartUpTests
     {
         [TestMethod()]
-        //[DataRow("admin1", "admin1234")]
-        [DataRow("Greta", "Greta25")]
+        [DataRow("admin1", "admin1234")]
+        [DataRow("Ebba", "Ebba25")]
         public void LogInTest(string username, string password)
         {
-            var startUp = new StartUp();
-            Employee.listOfEmployees.Add(new() { username = "Greta", password = "Greta25"});
+            StartUp startUp = new();
+            Employee.listOfEmployees.Add(new() { username = "Ebba", password = "Ebba25"});
             var actual = startUp.LogIn(username, password);
-            Assert.IsFalse(actual);
+            Assert.IsTrue(actual);
         }
 
         [TestMethod()]
         [DataRow("", "")]
         public void LogInTestNameIsEmpty(string username, string password)
         {
-            var startUp = new StartUp();
+            StartUp startUp = new();
             var actual = startUp.LogIn(username, password);
             Assert.IsFalse(actual);
         }
@@ -36,7 +36,7 @@ namespace SalarySystem.Tests
         [DataRow("Greta")]
         public void FindUserTest(string username)
         {
-            var startUp = new StartUp();
+            StartUp startUp = new();
             Employee.listOfEmployees.Add(new() { username = "Greta" });
             var actual = startUp.FindUser(username).username;
             var expected = "Greta";
@@ -47,7 +47,7 @@ namespace SalarySystem.Tests
         [DataRow("Ellen")]
         public void FindUserTestListIsNull(string username)
         {
-            var startUp = new StartUp();
+            StartUp startUp = new();
             var actual = startUp.FindUser(username);
             Assert.IsNull(actual);
         }
@@ -56,7 +56,7 @@ namespace SalarySystem.Tests
         [DataRow("Lo")]
         public void FindUserTestNameIsNull(string username)
         {
-            var startUp = new StartUp();
+            StartUp startUp = new();
             Employee.listOfEmployees.Add(new() { username = "Frida" });
             var actual = startUp.FindUser(username);
             Assert.IsNull(actual);

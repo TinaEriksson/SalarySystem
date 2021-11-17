@@ -23,16 +23,6 @@ namespace SalarySystem
 
         }
 
-        //public Employee(int employeeId, string username, string password,
-        //    string profession, int salary) : base(username, password,profession,salary)
-        //{
-        //    this.employeeId = employeeId;
-        //    this.username = username;
-        //    this.password = password;
-        //    this.profession = profession;
-        //    this.salary = salary;
-        //}
-
         /// <summary>
         /// Tar bort användare
         /// </summary>
@@ -47,14 +37,5 @@ namespace SalarySystem
             }
             return false;
         }
-         public int SeeSalary(Employee user)
-        {
-            return user.salary;
-        }
-         void SeeProfession()
-        {
-
-        }
-
     }
 }

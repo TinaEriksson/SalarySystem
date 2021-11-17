@@ -56,7 +56,7 @@ namespace SalarySystem
                         Console.WriteLine(employee.profession);
                         break;
                     case "3":
-                        var aEmployee = new Employee();
+                        Employee aEmployee = new();
                         if (aEmployee.DeleteMe(employee))
                         {
                             Console.WriteLine("Employee deleted from system.");
