@@ -11,16 +11,19 @@ namespace SalarySystem
         public static List<Employee> listOfEmployees = new List<Employee>();
         public int employeeId { get; set; }
 
+
         public Employee() 
         { 
         
         }
 
-        public Employee(string username, string password) : base(username, password)
+        public Employee(string username, string password, string profession, 
+            int salary) : base(username, password, profession, salary)
         {
             this.username = username;
             this.password = password;
-
+            this.profession = profession;
+            this.salary = salary;
         }
 
         /// <summary>

@@ -11,7 +11,7 @@ namespace SalarySystem
 
         public string username { get; set; }
         public string password { get; set; }
-        public string profession { get; set; }
+        public string profession { get; set; } // Eventuella defaultvärden
         public int salary { get; set; }
 
         public Account()

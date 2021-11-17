@@ -46,6 +46,7 @@ namespace SalarySystem
                 Console.WriteLine("2. See profession");
                 Console.WriteLine("3. Delete yourself");
                 Console.WriteLine("0. Log out");
+                Console.Write("Enter choice: ");
                 var choice = Console.ReadLine();
                 switch (choice)
                 {
@@ -82,7 +83,6 @@ namespace SalarySystem
         {
             Admin admin = new();
             bool loop = true;
-
             do
             {
                 Console.Clear();
@@ -92,35 +92,34 @@ namespace SalarySystem
                 Console.WriteLine("4. Add employee");
                 Console.WriteLine("5. Delete employee");
                 Console.WriteLine("0. Log out");
+                Console.Write("Enter choice: ");
                 var choice = Console.ReadLine();
                 switch (choice)
                 {
                     case "1":
-                        Console.WriteLine(admin.salary);
+                        Console.WriteLine("\n" + admin.salary);
                         break;
                     case "2":
-                        Console.WriteLine(admin.profession); 
+                        Console.WriteLine("\n" + admin.profession); 
                         break;
                     case "3":
                         admin.PrintListOfEmployees();
                         break;
                     case "4":
-                        admin.CreateEmployee();
+                        admin.EnterDataToCreateEmployee();
                         break;
                     case "5":
-                        admin.DeleteEmployee();
+                        admin.EnterDataToDeleteEmployee();
                         break;
                     case "0":
-                        Console.WriteLine("Logging out..");
-                        Thread.Sleep(1000);
+                        Console.WriteLine("\nLogging out..");
                         loop = false;
                         break;
                     default:
                         Console.WriteLine("Wrong input");
                         break;
                 }
-                Console.WriteLine("Press enter to continue..");
-                Console.ReadKey();
+                Thread.Sleep(2000);
             } while (loop);
             
         }
