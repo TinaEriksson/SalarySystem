@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace SalarySystem
 {
@@ -21,6 +22,8 @@ namespace SalarySystem
 
         public void PrintListOfEmployees()
         {
+            Console.Clear();
+            Console.WriteLine("\nEmployees in the system.");
             if(Employee.listOfEmployees != null)
             {
                 foreach (var person in Employee.listOfEmployees)
@@ -32,8 +35,10 @@ namespace SalarySystem
             }
         }
 
-        public void CreateEmployee()
+        public void EnterDataToCreateEmployee()
         {
+            Console.Clear();
+            Console.WriteLine("\nAdd a new employee.\n");
             var keepGoing = true;
             Console.Write("Username: ");
             var username = Console.ReadLine();
@@ -47,14 +52,7 @@ namespace SalarySystem
                     var profession = Console.ReadLine();
                     Console.Write("Salary: ");
                     var checkIfNumber = int.TryParse(Console.ReadLine(), out int salary);
-                    Employee.listOfEmployees.Add(new()
-                    {
-                        employeeId = FindLastEmployee() + 1,
-                        username = username,
-                        password = password,
-                        profession = profession,
-                        salary = salary,
-                    });
+                    CreateEmployee(username, password, profession, salary);
                     keepGoing = false;
                 }
                 else
@@ -62,6 +60,24 @@ namespace SalarySystem
                     Console.WriteLine("Password needs to contain letters and numbers.");
                 }
             } while (keepGoing);
+        }
+
+        public bool CreateEmployee(string username, string password,
+            string profession, int salary)
+        {
+            if(username != null && password != null)
+            {
+                Employee.listOfEmployees.Add(new()
+                {
+                    employeeId = FindLastEmployee() + 1,
+                    username = username,
+                    password = password,
+                    profession = profession,
+                    salary = salary,
+                });
+                return true;
+            }
+            return false;
         }
 
         private bool passwordIsValidated(string password)
@@ -85,21 +101,36 @@ namespace SalarySystem
                 return false;
         }
 
-        internal void DeleteEmployee()
+        public void EnterDataToDeleteEmployee()
         {
+            Console.Clear();
+            Console.WriteLine("\nDelete employee.\n");
             Console.Write("Enter username of employee to delete: ");
             var username = Console.ReadLine();
             Console.Write("Enter password of employee to delete: ");
             var password = Console.ReadLine();
             var employee = start.FindUser(username, password);
-            
-            if(employee is not null && employee.DeleteMe(employee))
+            if (DeleteEmployee(employee))
             {
                 Console.WriteLine("Employee was deleted.");
             }
             else
             {
+                EnterDataToDeleteEmployee();
+            }   
+        }
+
+        public bool DeleteEmployee(Employee employee)
+        {
+            if(employee is not null && employee.DeleteMe(employee))
+            {
+                return true;
+            }
+            else
+            {
                 Console.WriteLine("No matching employee..");
+                Thread.Sleep(1500);
+                return false;
             }
         }
 
