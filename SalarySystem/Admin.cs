@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace SalarySystem
 {
     public class Admin : Account
     {
+        StartUp start = new();
+        Employee employee = new();
         public Admin()
-        {
-
-        }
-
-        public Admin(string username, string password, string profession, int salary) : base(username, password, profession, salary)
         {
             username = "admin1";
             password = "admin1234";
@@ -21,11 +19,11 @@ namespace SalarySystem
             salary = 100000;
         }
 
-        public void ListUsers()
+        public void PrintListOfEmployees()
         {
-            if(Employee.listOfUsers != null)
+            if(Employee.listOfEmployees != null)
             {
-                foreach (var person in Employee.listOfUsers)
+                foreach (var person in Employee.listOfEmployees)
                 {
                     Console.WriteLine($"EmployeeId: {person.employeeId}. " +
                                       $"Username: {person.username} " +
@@ -34,29 +32,47 @@ namespace SalarySystem
             }
         }
 
-        public void CreateUser()
+        public void CreateEmployee()
         {
+            var keepGoing = true;
             Console.Write("Username: ");
             var username = Console.ReadLine();
-            Console.Write("Password: ");
-            var password = Console.ReadLine();
-            Console.Write("Profession: ");
-            var profession = Console.ReadLine();
-            Console.Write("Salary: ");
-            var checkIfNumber = int.TryParse(Console.ReadLine(), out int salary);
-            Employee.listOfUsers.Add(new()
+            do
             {
-                employeeId= FindLastUser()+1,
-                username = username,
-                password = password,
-                profession = profession,
-                salary = salary,
-            });
+                Console.Write("Password: ");
+                var password = Console.ReadLine();
+                if (passwordIsValidated(password))
+                {
+                    Console.Write("Profession: ");
+                    var profession = Console.ReadLine();
+                    Console.Write("Salary: ");
+                    var checkIfNumber = int.TryParse(Console.ReadLine(), out int salary);
+                    Employee.listOfEmployees.Add(new()
+                    {
+                        employeeId = FindLastEmployee() + 1,
+                        username = username,
+                        password = password,
+                        profession = profession,
+                        salary = salary,
+                    });
+                    keepGoing = false;
+                }
+                else
+                {
+                    Console.WriteLine("Password needs to contain letters and numbers.");
+                }
+            } while (keepGoing);
         }
 
-        private int FindLastUser()
+        private bool passwordIsValidated(string password)
         {
-            var lastEmployee = Employee.listOfUsers.LastOrDefault();
+            var demands = new Regex("^(?=.*[a-zA-Z])(?=.*[0-9])");
+            return demands.IsMatch(password);
+        }
+
+        private int FindLastEmployee()
+        {
+            var lastEmployee = Employee.listOfEmployees.LastOrDefault();
             if (lastEmployee is null) return 0;
             return lastEmployee.employeeId;
         }
@@ -69,12 +85,22 @@ namespace SalarySystem
                 return false;
         }
 
-        internal void DeleteUser()
+        internal void DeleteEmployee()
         {
-            ListUsers();
-            Console.WriteLine("Enter number of user to delete");
-            var checkNumber = int.TryParse(Console.ReadLine(), out int choice);
-
+            Console.Write("Enter username of employee to delete: ");
+            var username = Console.ReadLine();
+            Console.Write("Enter password of employee to delete: ");
+            var password = Console.ReadLine();
+            var employee = start.FindUser(username, password);
+            
+            if(employee is not null && employee.DeleteMe(employee))
+            {
+                Console.WriteLine("Employee was deleted.");
+            }
+            else
+            {
+                Console.WriteLine("No matching employee..");
+            }
         }
 
 

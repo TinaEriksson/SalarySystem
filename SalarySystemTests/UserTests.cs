@@ -27,7 +27,7 @@ namespace SalarySystem.Tests
         public void DeleteMeTest()
         {
             Employee user = new() { username = "Pelle", password = "pelle123" };
-            Employee.listOfUsers.Add(user);
+            Employee.listOfEmployees.Add(user);
             var actual = user.DeleteMe(user);
             Assert.IsTrue(actual);
         }

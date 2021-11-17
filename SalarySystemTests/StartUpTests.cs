@@ -18,7 +18,7 @@ namespace SalarySystem.Tests
         public void LogInTest(string username, string password)
         {
             var startUp = new StartUp();
-            Employee.listOfUsers.Add(new() { username = "Greta", password = "Greta25"});
+            Employee.listOfEmployees.Add(new() { username = "Greta", password = "Greta25"});
             var actual = startUp.LogIn(username, password);
             Assert.IsTrue(actual);
         }
@@ -37,7 +37,7 @@ namespace SalarySystem.Tests
         public void FindUserTest(string username)
         {
             var startUp = new StartUp();
-            Employee.listOfUsers.Add(new() { username = "Greta" });
+            Employee.listOfEmployees.Add(new() { username = "Greta" });
             var actual = startUp.FindUser(username).username;
             var expected = "Greta";
             Assert.AreEqual(actual, expected);
@@ -57,7 +57,7 @@ namespace SalarySystem.Tests
         public void FindUserTestNameIsNull(string username)
         {
             var startUp = new StartUp();
-            Employee.listOfUsers.Add(new() { username = "Frida" });
+            Employee.listOfEmployees.Add(new() { username = "Frida" });
             var actual = startUp.FindUser(username);
             Assert.IsNull(actual);
         }
