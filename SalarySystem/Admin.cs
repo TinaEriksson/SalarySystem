@@ -9,6 +9,8 @@ namespace SalarySystem
 {
     public class Admin : Account
     {
+        StartUp start = new();
+        Employee employee = new();
         public Admin()
         {
             username = "admin1";
@@ -85,17 +87,19 @@ namespace SalarySystem
 
         internal void DeleteEmployee()
         {
-            if(Employee.listOfEmployees.Count > 0)
+            Console.Write("Enter username of employee to delete: ");
+            var username = Console.ReadLine();
+            Console.Write("Enter password of employee to delete: ");
+            var password = Console.ReadLine();
+            var employee = start.FindUser(username, password);
+            
+            if(employee is not null && employee.DeleteMe(employee))
             {
-                PrintListOfEmployees();
-                Console.Write("Enter id of employee to delete: ");
-                var checkNumber = int.TryParse(Console.ReadLine(), out int choice);
-                var employee = Employee.listOfEmployees.Where(x => x.employeeId == choice).FirstOrDefault();
-                Employee.listOfEmployees.Remove(employee);
+                Console.WriteLine("Employee was deleted.");
             }
             else
             {
-                Console.WriteLine("No employees in the system.");
+                Console.WriteLine("No matching employee..");
             }
         }
 

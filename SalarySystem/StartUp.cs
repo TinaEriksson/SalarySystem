@@ -57,7 +57,11 @@ namespace SalarySystem
                         break;
                     case "3":
                         var aEmployee = new Employee();
-                        aEmployee.DeleteMe(employee);
+                        if (aEmployee.DeleteMe(employee))
+                        {
+                            Console.WriteLine("Employee deleted from system.");
+                            keepGoing = false;
+                        }
                         break;
                     case "0":
                         Console.WriteLine("Logging out..");
@@ -135,7 +139,8 @@ namespace SalarySystem
                 }
                 else
                 {
-                    Console.WriteLine("Login failed");
+                    Console.WriteLine("Login failed, press enter and try again!");
+                    Console.ReadKey();
                     return false;
                 }
             }
@@ -144,6 +149,12 @@ namespace SalarySystem
         public Employee FindUser(string username)
         {    
             return Employee.listOfEmployees.Where(x => x.username == username).FirstOrDefault();
+        }
+
+        public Employee FindUser(string username, string password)
+        {
+            return Employee.listOfEmployees.Where(x => x.username == username 
+            && x.password == password).FirstOrDefault();
         }
     }
 }
