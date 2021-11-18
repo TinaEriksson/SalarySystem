@@ -6,11 +6,30 @@ using System.Threading.Tasks;
 
 namespace SalarySystem
 {
-    class Account
+    public class Account
     {
-        public string username;
-        public string password;
-        public string profession;
-        public int salary;
+
+        public string username { get; set; }
+        public string password { get; set; }
+        public string profession { get; set; } // Eventuella defaultvärden
+        public int salary { get; set; }
+
+        public Account()
+        {
+
+        }
+        public Account(string username, string password)
+        {
+            this.username = username;
+            this.password = password;
+        }
+
+        public Account(string username, string password, string profession, int salary)
+        {
+            this.username = username;
+            this.password = password;
+            this.profession = profession;
+            this.salary = salary;
+        }
     }
 }
