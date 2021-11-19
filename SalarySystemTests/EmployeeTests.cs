@@ -12,9 +12,10 @@ namespace SalarySystem.Tests
     public class EmployeeTests
     {
         [TestMethod()]
-        public void DeleteMeTest()
+        [DataRow("Pelle","pelle123")]
+        public void DeleteMeTest(string username, string password)
         {
-            Employee user = new() { username = "Pelle", password = "pelle123" };
+            Employee user = new() { username = username, password = password };
             Employee.listOfEmployees.Add(user);
             var actual = user.DeleteMe(user);
             Assert.IsTrue(actual);
