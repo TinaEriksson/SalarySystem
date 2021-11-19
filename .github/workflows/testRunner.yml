@@ -24,6 +24,9 @@ jobs:
       run: dotnet build --no-restore
       
   test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
     needs: build
     if: github.event_name=='pull_request'
     runs-on: ${{ matrix.os }}
