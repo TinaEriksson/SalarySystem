@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace SalarySystem
 {
+    /// <summary>
+    /// Klass som Admin och Employee ärver ifrån.
+    /// </summary>
     public class Account
     {
-
+        
         public string username { get; set; }
         public string password { get; set; }
-        public string profession { get; set; } // Eventuella defaultvärden
+        public string profession { get; set; }
         public int salary { get; set; }
 
         public Account()
