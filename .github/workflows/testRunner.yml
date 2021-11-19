@@ -23,6 +23,7 @@ jobs:
       run: dotnet build --no-restore
       
   test:
+    if: github.event_name=='pull_request'
     runs-on: ubuntu-latest
 
     steps:
