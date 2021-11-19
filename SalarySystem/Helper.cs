@@ -8,6 +8,9 @@ namespace SalarySystem
 {
     class Helper
     {
+        /// <summary>
+        /// Mockdata för att använda i programmet.
+        /// </summary>
         public void MockdataEmployees()
         {
             Employee.listOfEmployees.Add(new Employee()
@@ -17,7 +20,7 @@ namespace SalarySystem
                 password = "Lo1234",
                 profession = "CoffeeMaker",
                 salary = 10000
-            });;
+            }); ;
             Employee.listOfEmployees.Add(new Employee()
             {
                 employeeId = 2,
