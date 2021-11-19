@@ -13,7 +13,7 @@ namespace SalarySystemTests
     public class IntegrationTests
     {
         [TestMethod()]
-        public void IntegrationTest()
+        public void IntegrationTestEmployee()
         {
             Employee employee = new()
             {
@@ -22,19 +22,35 @@ namespace SalarySystemTests
                 profession="Copiater",
                 salary= 10000,
             };
-            AdminTests admin = new();
-            StartUpTests start = new();
-            EmployeeTests employeeTests = new();
+            Employee.listOfEmployees.Add(employee);
+            StartUp start = new();
+         
+            var actual = start.LogIn(employee.username, employee.password);
+            var actual2 = employee.DeleteMe(employee);
+            var actual3 = start.LogIn(employee.username, employee.password);
 
-            admin.CreateEmployeeTest(employee.username, employee.password,
-                                    employee.profession, employee.salary);          
-            start.LogInTest(employee.username, employee.password);
-            start.FindUserTest(employee.username);          
-            employeeTests.DeleteMeTest(employee.username, employee.password);
+            Assert.IsTrue(actual);
+            Assert.IsTrue(actual2);
+            Assert.IsFalse(actual3);
 
-            A
+        }
 
+        [TestMethod()]
+        public void IntegrationTestAdmin()
+        {
+            Admin admin = new();
+            StartUp start = new();
 
+            var actual = start.LogIn(admin.username, admin.password);
+            var actual2 = admin.CreateEmployee("Ulla", "Ulla1234", "Copiater", 10000);
+            var employee = start.FindUser("Ulla");
+            var actual3 = admin.DeleteEmployee(employee);
+            var actual4 = start.FindUser("Ulla");
+
+            Assert.IsTrue(actual);
+            Assert.IsTrue(actual2);
+            Assert.IsTrue(actual3);
+            Assert.IsNull(actual4);
         }
     }
 }
